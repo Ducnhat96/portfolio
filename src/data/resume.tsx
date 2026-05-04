@@ -54,7 +54,7 @@ export const DATA = {
   browserTitle: "Portfolio | Nhat D. Pham | Front-end Developer",
   name: "Nhat D. Pham",
   initials: "DMJ",
-  url: "https://ducnhat96.io",
+  url: "https://nhatpham-portfolio.vercel.app",
   location: "Da Nang City, VN",
   locationLink: "https://www.google.com/maps/place/danang",
   description:
