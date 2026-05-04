@@ -165,12 +165,6 @@ export const DATA = {
         icon: Icons.youtube,
         navbar: true,
       },
-      email: {
-        name: "Send Email",
-        url: "phamducnhat96bkhn@gmail.com",
-        icon: Icons.email,
-        navbar: true,
-      },
     },
   },
 
