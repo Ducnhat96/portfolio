@@ -1,0 +1,76 @@
+---
+title: "Astro for Fast Content-Driven Websites"
+publishedAt: "2026-02-02"
+updatedAt: "2026-02-02"
+author: "NHAT D. PHAM"
+summary: "How Astro helps build fast landing pages, blogs, and documentation sites with less client-side JavaScript."
+image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=192&fit=crop"
+---
+
+# Astro for Fast Content-Driven Websites
+
+Astro is a great choice when the page is mostly content but still needs polished interactions. It ships zero JavaScript by default and lets you hydrate only the components that need it.
+
+<MediaContainer
+  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&fit=crop"
+  alt="Developer workspace for building content websites"
+/>
+
+## Where Astro fits well
+
+- Marketing landing pages.
+- Personal portfolios.
+- Documentation websites.
+- Blogs and content hubs.
+- Product pages with light interactivity.
+
+## Why Astro feels fast
+
+Astro starts from a content-first mindset. HTML is generated first, and JavaScript is added only when a component needs interaction. This is different from many app frameworks where JavaScript is the default delivery model.
+
+For landing pages and blogs, this difference matters. Users can read the page quickly, search engines can crawl meaningful content, and the browser has less work to do before the page becomes useful.
+
+## Choosing components wisely
+
+Astro works with React, Vue, Svelte, and other UI libraries, but not every component needs to hydrate. A static testimonial section can stay as HTML. A pricing calculator or theme switcher can hydrate as an island.
+
+This makes Astro a strong option for teams that want modern component workflows without turning every page into a heavy client app.
+
+## Islands architecture
+
+Astro's island model lets static content stay static while interactive widgets hydrate separately.
+
+```astro
+---
+import PricingToggle from "../components/PricingToggle.tsx";
+---
+
+<section>
+  <h1>Simple pricing</h1>
+  <PricingToggle client:load />
+</section>
+```
+
+## Content collections
+
+For blogs and documentation, content collections help keep frontmatter typed and predictable. Titles, summaries, dates, tags, and images become structured content instead of loose files.
+
+```ts
+const posts = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    publishedAt: z.string(),
+  }),
+});
+```
+
+## When not to use Astro
+
+Astro is not always the best choice. If the product is a highly interactive dashboard, realtime application, or complex state-driven app, a framework like Next.js may be more comfortable.
+
+The key is matching the framework to the product. Content-heavy sites benefit from Astro's defaults. App-heavy products may need a different foundation.
+
+## Takeaway
+
+If performance, SEO, and content editing matter more than complex app state, Astro can be the simplest and fastest path.

@@ -1,0 +1,65 @@
+---
+title: "React Performance Patterns That Actually Matter"
+publishedAt: "2026-03-18"
+updatedAt: "2026-03-18"
+author: "NHAT D. PHAM"
+summary: "A focused guide to practical React performance improvements: rendering boundaries, memoization, lazy loading, and state placement."
+image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=192&fit=crop"
+---
+
+# React Performance Patterns That Actually Matter
+
+React performance is not about adding `memo` everywhere. It is about understanding what changes, where state lives, and which components really need to re-render.
+
+<MediaContainer
+  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&fit=crop"
+  alt="Performance dashboard and analytics screen"
+/>
+
+## Start with the basics
+
+- Keep state as close as possible to where it is used.
+- Split heavy components behind clear boundaries.
+- Use lazy loading for expensive or below-the-fold UI.
+- Avoid derived state that can be computed from props.
+- Measure before optimizing.
+
+## State placement matters
+
+State placed too high in the tree can cause large parts of the UI to re-render. Before reaching for memoization, check whether the state can move closer to the component that actually needs it.
+
+For example, a search input does not always need to update an entire page. It may only need to update a filtered list. Keeping the state near that list can reduce unnecessary work.
+
+## Rendering boundaries
+
+Large components are hard to optimize because everything changes together. Smaller rendering boundaries make it easier to isolate expensive sections, memoize intentionally, and lazy-load only what is needed.
+
+## Memoization with purpose
+
+```tsx
+const filteredItems = useMemo(() => {
+  return items.filter((item) => item.name.includes(query));
+}, [items, query]);
+```
+
+Memoization is helpful when the calculation is expensive or when referential stability prevents unnecessary child renders.
+
+## Lazy loading
+
+Not every component needs to be part of the initial bundle. Modals, charts, editors, maps, and admin-only panels can often load only when users need them.
+
+```tsx
+const ChartPanel = lazy(() => import("./ChartPanel"));
+```
+
+Lazy loading works best when paired with good fallback UI. Users should understand that something is loading, not feel like the app is broken.
+
+## Measure real bottlenecks
+
+Use profiling tools before and after a change. Look for slow interactions, repeated renders, large bundles, and expensive calculations. Performance work should be guided by evidence.
+
+If an optimization makes the code harder to read but does not improve the user experience, it is probably not worth keeping.
+
+## Takeaway
+
+Performance work should be visible to users. Optimize slow interactions, large bundles, and repeated rendering before chasing micro-improvements.

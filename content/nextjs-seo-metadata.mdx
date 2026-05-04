@@ -1,0 +1,63 @@
+---
+title: "Next.js SEO and Metadata Checklist"
+publishedAt: "2026-04-05"
+updatedAt: "2026-04-05"
+author: "NHAT D. PHAM"
+summary: "A checklist for improving technical SEO in Next.js projects using metadata, Open Graph images, structured content, and performance basics."
+image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=192&fit=crop"
+---
+
+# Next.js SEO and Metadata Checklist
+
+SEO in Next.js is not only about keywords. It is also about crawlable content, useful metadata, fast pages, structured URLs, and social previews that look polished.
+
+<MediaContainer
+  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&fit=crop"
+  alt="Analytics dashboard for SEO and growth"
+/>
+
+## Checklist
+
+- Add route-level `title` and `description`.
+- Configure Open Graph and Twitter metadata.
+- Use semantic headings.
+- Keep URLs readable and stable.
+- Generate sitemap and robots files.
+- Optimize images and Core Web Vitals.
+
+## Metadata as product copy
+
+Metadata is often the first version of a page that users see. Search results, link previews, and social cards all depend on clear titles and descriptions.
+
+Good metadata should be specific. Instead of generic titles like "Home" or "Article", describe the page's value in a way that makes sense outside the website.
+
+## Open Graph images
+
+Open Graph images make shared links feel polished. For blogs, include the article title and brand style. For product pages, show the product value clearly.
+
+Dynamic Open Graph images are useful when a site has many pages. They reduce manual design work while keeping previews consistent.
+
+## Metadata example
+
+```ts
+export const metadata = {
+  title: "Product Page",
+  description: "A clear description for search and social previews.",
+};
+```
+
+## Structured content
+
+Search engines understand pages better when the content structure is clear. Use one main `h1`, meaningful section headings, descriptive links, and readable URLs.
+
+Images should include alt text when they communicate meaning. Decorative images can stay simple, but product screenshots, diagrams, and article illustrations should help users who cannot see them.
+
+## Performance and SEO
+
+Technical SEO is closely tied to performance. Slow pages can reduce engagement, especially on mobile. Optimize images, reduce unnecessary JavaScript, and keep layout shifts under control.
+
+SEO is not a one-time checklist. It is part of the publishing workflow: every new page should be readable, shareable, and fast.
+
+## Takeaway
+
+Good SEO is a product quality habit. Make pages fast, descriptive, structured, and easy to share.

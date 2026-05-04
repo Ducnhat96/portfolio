@@ -1,0 +1,78 @@
+---
+title: "Next.js App Router Patterns for Production Projects"
+publishedAt: "2026-01-20"
+updatedAt: "2026-01-20"
+author: "NHAT D. PHAM"
+summary: "Common App Router patterns for layouts, loading states, metadata, and data fetching in real-world Next.js apps."
+image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=192&fit=crop"
+---
+
+# Next.js App Router Patterns for Production Projects
+
+The App Router gives Next.js a strong foundation for modern applications: nested layouts, streaming, server components, metadata, and route-level loading states.
+
+<MediaContainer
+  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&fit=crop"
+  alt="Server hardware representing modern web infrastructure"
+/>
+
+## Patterns that scale
+
+- Keep shared UI in `layout.tsx`.
+- Use `loading.tsx` for route-level perceived performance.
+- Use `error.tsx` for isolated recovery.
+- Keep metadata close to the route it describes.
+- Fetch data on the server when interactivity is not required.
+
+## Layouts as product boundaries
+
+Layouts should represent stable parts of the product. A dashboard layout may include navigation, account switching, and permission-aware menus. A marketing layout may include a header, footer, and conversion tracking. Keeping these concerns inside layouts makes individual pages smaller and easier to maintain.
+
+Nested layouts are especially useful when a product has multiple zones. For example, an admin area, a user dashboard, and a public website can all share the same app while keeping different UI shells.
+
+## Loading and error states
+
+Production apps need graceful waiting and recovery. `loading.tsx` gives users immediate feedback while a route segment streams in. `error.tsx` prevents a single broken feature from taking down the whole application.
+
+Good loading states should match the shape of the final content. Skeleton cards, muted placeholders, and preserved layout spacing usually feel better than a full-screen spinner.
+
+## Route organization
+
+A clean route structure often mirrors product areas rather than technical layers.
+
+```txt
+app/
+  dashboard/
+    layout.tsx
+    page.tsx
+    loading.tsx
+  settings/
+    page.tsx
+```
+
+## Data fetching strategy
+
+Fetch on the server when the data is needed for the first render and does not require browser state. Move fetching to the client when it depends on live user interaction, optimistic updates, realtime events, or local state.
+
+For many pages, a hybrid model works best: initial content from the server, then interactive widgets on the client.
+
+```tsx
+export default async function DashboardPage() {
+  const stats = await getDashboardStats();
+
+  return (
+    <section>
+      <StatsGrid stats={stats} />
+      <RealtimeActivityFeed />
+    </section>
+  );
+}
+```
+
+## Metadata and sharing
+
+Metadata should be treated as part of the route, not an afterthought. Titles, descriptions, canonical URLs, and Open Graph images help users understand what they are sharing and help search engines understand each page.
+
+## Takeaway
+
+Good App Router architecture makes the product easier to grow. Start with clear route boundaries, then optimize only where users feel the difference.

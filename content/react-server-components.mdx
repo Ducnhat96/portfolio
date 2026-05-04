@@ -1,0 +1,77 @@
+---
+title: "React Server Components: Building Faster App Experiences"
+publishedAt: "2026-01-12"
+updatedAt: "2026-01-12"
+author: "NHAT D. PHAM"
+summary: "A practical look at React Server Components, where they fit, and how they help reduce client-side JavaScript."
+image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=192&fit=crop"
+---
+
+# React Server Components: Building Faster App Experiences
+
+React Server Components change how we think about rendering. Instead of sending every component to the browser, we can keep data-heavy UI on the server and ship only the interactive pieces to the client.
+
+<MediaContainer
+  src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&fit=crop"
+  alt="React interface on a developer screen"
+/>
+
+## Why they matter
+
+- Less JavaScript sent to the browser.
+- Direct access to server-side data sources.
+- Cleaner separation between static content and interactive UI.
+- Better defaults for performance-focused applications.
+
+## What should stay on the server
+
+Server Components are a good fit for parts of the interface that do not need browser interaction. Product grids, blog content, dashboards, documentation pages, pricing sections, and profile summaries can often render on the server without becoming client-side JavaScript.
+
+This keeps the browser focused on what it does best: responding to user interaction. The server can handle data access, formatting, permissions, and content composition before the UI reaches the user.
+
+## What should move to the client
+
+Client Components are still important. Forms, dropdowns, modals, animations, realtime chat inputs, wallet connection buttons, and anything that uses `useState`, `useEffect`, or browser APIs belongs on the client.
+
+The goal is not to avoid Client Components completely. The goal is to make the interactive surface intentional.
+
+## A simple mental model
+
+Use Server Components for data loading, layout, and content rendering. Use Client Components when you need browser APIs, state, effects, animations, or event handlers.
+
+```tsx
+// Server Component
+export default async function ProductList() {
+  const products = await getProducts();
+
+  return products.map((product) => <ProductCard key={product.id} product={product} />);
+}
+```
+
+## Common mistakes
+
+- Making the whole page a Client Component because one button needs state.
+- Passing huge objects across the server-client boundary.
+- Mixing data fetching and interaction in one large component.
+- Forgetting that Server Components cannot use browser-only APIs.
+
+## A better component split
+
+Start with a server-rendered page. Then isolate small interactive components inside it. This approach keeps the page fast while preserving the product experience users expect.
+
+```tsx
+export default async function Page() {
+  const profile = await getProfile();
+
+  return (
+    <main>
+      <ProfileHeader profile={profile} />
+      <FollowButton userId={profile.id} />
+    </main>
+  );
+}
+```
+
+## Takeaway
+
+The best React apps are not fully server-rendered or fully client-rendered. They use the right boundary for the right job.
