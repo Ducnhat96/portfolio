@@ -29,6 +29,7 @@ import { Firebase } from "@/components/ui/svgs/firebase";
 import { Supabase } from "@/components/ui/svgs/supabase";
 import { Vercel } from "@/components/ui/svgs/vercel";
 import { Railway } from "@/components/ui/svgs/railway";
+import { AntDesign } from "@/components/ui/svgs/antDesign";
 import { createHugeiconsSkillIcon } from "@/components/ui/hugeicons-skill-icon";
 
 const GithubSkillIcon = createHugeiconsSkillIcon(GithubIcon, "#181717");
@@ -73,6 +74,7 @@ export const DATA = {
     { name: "CSS3", icon: CssSkillIcon },
     { name: "Tailwind CSS", icon: TailwindCssSkillIcon },
     { name: "Shadcn UI", icon: ShadcnUiSkillIcon },
+    { name: "Ant Design", icon: AntDesign },
     { name: "Recharts", icon: RechartsSkillIcon },
     { name: "Stripe", icon: StripeSkillIcon },
     { name: "Socket.io", icon: Socketio },
@@ -157,12 +159,6 @@ export const DATA = {
         url: "https://x.com/PNhat19778",
         icon: Icons.x,
 
-        navbar: true,
-      },
-      Youtube: {
-        name: "Youtube",
-        url: "https://www.youtube.com/@phamucnhat7706",
-        icon: Icons.youtube,
         navbar: true,
       },
     },
